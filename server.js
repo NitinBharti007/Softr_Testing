@@ -2,12 +2,14 @@ require('dotenv').config();
 const express = require("express");
 const axios = require("axios");
 const app = express();
+const cors = require("cors"); 
 const PORT = process.env.PORT || 4000;
 
 const SOFTR_API_KEY = process.env.SOFTR_API_KEY;
 const DATABASE_ID    = process.env.DATABASE_ID;
 const TABLE_ID       = process.env.TABLE_ID;
 
+app.use(cors());
 app.get("/tasks", async (req, res) => {
   try {
     const url = `https://tables-api.softr.io/api/v1/databases/${DATABASE_ID}/tables/${TABLE_ID}/records`;
